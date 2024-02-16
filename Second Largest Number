@@ -1,0 +1,32 @@
+// Brute Force Approach
+
+vector<int> getSecondOrderElements(int n, vector<int> a) {
+    // Write your code here.
+    sort(a.begin(),a.end());
+    int small = a[1];
+    int large = a[n-2];
+    return {large,small};
+}
+
+
+// Optimal Approach
+
+vector<int> getSecondOrderElements(int n, vector<int> a) {
+    // Write your code here.
+    int small = INT_MAX, sec_small = INT_MAX;
+    int large = INT_MIN, sec_large = INT_MIN;
+    for(int i = 0;i<n;i++)
+    {
+        small = min(small,a[i]);
+        large = max(large,a[i]);
+    }
+    for(int i =0 ;i<n;i++){
+        if(a[i]<sec_small && a[i]!=small){
+            sec_small = a[i];
+        }
+        if(a[i]>sec_large && a[i]!= large){
+            sec_large = a[i];
+        }
+    }
+    return {sec_large,sec_small};
+}
